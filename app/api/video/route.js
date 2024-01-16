@@ -22,7 +22,10 @@ export const POST = async (req) => {
 
     const freeTrial = await checkApiLimit();
     const isPro = await checkSubscription();
-    if (!freeTrial && !isPro) {
+    // if (!freeTrial && !isPro) {
+    //   return new NextResponse('Free trail has expired.', { status: 403 });
+    // }
+    if (!freeTrial) {
       return new NextResponse('Free trail has expired.', { status: 403 });
     }
 
@@ -35,9 +38,10 @@ export const POST = async (req) => {
       }
     );
 
-    if (!isPro) {
-      await increaseApiLimit();
-    }
+    // if (!isPro) {
+    //   await increaseApiLimit();
+    // }
+    await increaseApiLimit();
 
     return NextResponse.json(response);
   } catch (error) {
