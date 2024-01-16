@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['oaidalleapiprodscus.blob.core.windows.net'],
+    // remotePatterns: ['oaidalleapiprodscus.blob.core.windows.net'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        // hostname: 'www.thecocktaildb.com',
+        port: '',
+        pathname: '/images/**',
+        hostname: '**', // to access all the images
+        pathname: '**',
+      },
+    ],
   },
 };
 
